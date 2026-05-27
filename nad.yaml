@@ -1,0 +1,24 @@
+# não é necessário criar o NetworkAttachmentDefinition manualmente, ele é criado automaticamente quando o 
+# ClusterUserDefinedNetwork é criado. 
+# O conteúdo do NetworkAttachmentDefinition é gerenciado pelo controlador do ClusterUserDefinedNetwork e não deve ser editado manualmente.
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  annotations:
+    k8s.ovn.org/network-id: '6'
+    k8s.ovn.org/network-name: cluster_udn_vlan371-transfer
+  name: vlan371-transfer
+  namespace: vm-migration
+  ownerReferences:
+    - apiVersion: k8s.ovn.org/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ClusterUserDefinedNetwork
+      name: vlan371-transfer
+      uid: 9904e403-abab-4bfa-bd2a-202965664b74
+  finalizers:
+    - k8s.ovn.org/user-defined-network-protection
+  labels:
+    k8s.ovn.org/user-defined-network: ''
+spec:
+  config: '{"cniVersion":"1.0.0","excludeSubnets":"161.68.120.72/32,161.68.120.73/32,161.68.120.75/32,161.68.120.76/32,161.68.120.77/32,161.68.120.78/32,161.68.120.79/32","mtu":1500,"name":"cluster_udn_vlan371-transfer","netAttachDefName":"vm-migration/vlan371-transfer","physicalNetworkName":"physnet371","role":"secondary","subnets":"161.68.120.72/29","topology":"localnet","type":"ovn-k8s-cni-overlay","vlanID":371}'

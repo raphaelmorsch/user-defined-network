@@ -1,0 +1,19 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: vm-migration
+  labels:
+    kubernetes.io/metadata.name: vm-migration
+    migration-network: vlan371
+    pod-security.kubernetes.io/audit: restricted
+    pod-security.kubernetes.io/audit-version: latest
+    pod-security.kubernetes.io/warn: restricted
+    pod-security.kubernetes.io/warn-version: latest
+  annotations:
+    openshift.io/sa.scc.mcs: 's0:c32,c29'
+    openshift.io/sa.scc.supplemental-groups: 1001050000/10000
+    openshift.io/sa.scc.uid-range: 1001050000/10000
+    security.openshift.io/MinimallySufficientPodSecurityStandard: restricted
+spec:
+  finalizers:
+    - kubernetes

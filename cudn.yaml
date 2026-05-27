@@ -1,0 +1,32 @@
+apiVersion: k8s.ovn.org/v1
+kind: ClusterUserDefinedNetwork
+metadata:
+  finalizers:
+    - k8s.ovn.org/user-defined-network-protection
+  name: vlan371-transfer
+spec:
+  namespaceSelector:
+    matchLabels:
+      migration-network: vlan371
+  network:
+    localnet:
+      excludeSubnets:
+        - 161.68.120.72/32
+        - 161.68.120.73/32
+        - 161.68.120.75/32
+        - 161.68.120.76/32
+        - 161.68.120.77/32
+        - 161.68.120.78/32
+        - 161.68.120.79/32
+      ipam:
+        mode: Enabled
+      mtu: 1500
+      physicalNetworkName: physnet371
+      role: Secondary
+      subnets:
+        - 161.68.120.72/29
+      vlan:
+        access:
+          id: 371
+        mode: Access
+    topology: Localnet
