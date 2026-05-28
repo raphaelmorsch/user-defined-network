@@ -1,0 +1,15 @@
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: nncp-macvlan-vlan371-transfer
+spec:
+  desiredState:
+    interfaces:
+      - name: vlan371
+        state: up
+        type: vlan
+        vlan:
+          base-iface: enp2s0
+          id: 371
+  nodeSelector:
+    node-role.kubernetes.io/worker: ''
